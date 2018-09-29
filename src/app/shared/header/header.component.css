@@ -1,0 +1,17 @@
+.fs-navbar {
+  position: relative;
+  min-height: 50px;
+  border: 1px solid transparent;
+  background: #001f3f;
+  margin-bottom: 20px;
+}
+.fs-navbar-logo {
+  float: left;
+  padding: 15px 15px;
+  font-size: 18px;
+  height: 40px;
+  line-height: 20px;
+}
+.fs-navbar a {
+  color: #fff;
+}

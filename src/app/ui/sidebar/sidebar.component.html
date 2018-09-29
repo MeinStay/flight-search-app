@@ -1,0 +1,21 @@
+<div class="panel">
+  <form #searchFlight="ngForm">
+    <div class="fs-form-group">
+      <input type="text" class="fs-form-control" id="originCity" required [(ngModel)]="searchForm.originCity" name="originCity"
+        #originCity="ngModel" placeholder="Enter Origin City">
+      <div *ngIf="originCity.invalid && originCity.touched" class="alert">
+        Please Enter Origin City
+      </div>
+    </div>
+    <div class="fs-form-group">
+      <input type="text" class="fs-form-control" id="destinationCity" required [(ngModel)]="searchForm.destinationCity"
+        name="destinationCity" #destinationCity="ngModel" placeholder="Enter Destination">
+      <div *ngIf="destinationCity.invalid && destinationCity.touched" class="alert">
+        Please Enter Destination City
+      </div>
+    </div>
+    <div class="fs-form-group">
+      <input type="text" class="fs-form-control" bsDatepicker>
+    </div>
+  </form>
+</div>
