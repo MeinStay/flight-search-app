@@ -2,6 +2,7 @@
  * Interface for search form
  */
 export interface ISearchForm {
+  tripType: string;
   originCity: string;
   destinationCity: string;
   departureDate: string;

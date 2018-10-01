@@ -11,6 +11,13 @@ body {
   font-size: 14px;
   color: #4a4a4a;
 }
+input,
+textarea,
+select,
+button {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 12px;
+}
 a {
   text-decoration: none;
   color: #4a4a4a;
@@ -35,6 +42,8 @@ a {
 }
 .panel {
   padding: 15px;
+}
+.panel-bordered {
   border: 1px solid #ddd;
 }
 .fs-form-control {
@@ -42,7 +51,6 @@ a {
   width: 100%;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -50,12 +58,80 @@ a {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.fs-pull-right {
+  float: right;
+}
+.fs-pull-left {
+  float: left;
+}
 .fs-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+}
+.fs-hide-xs {
+  display: block;
 }
 .alert {
   color: red;
   font-size: 12px;
+}
+.m-r-5 {
+  margin-right: 5px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+.m-t-15 {
+  margin-top: 15px;
+}
+.m-t-20 {
+  margin-top: 20px;
+}
+.m-b-10 {
+  margin-bottom: 10px;
+}
+.m-b-15 {
+  margin-bottom: 15px;
+}
+.m-b-20 {
+  margin-bottom: 20px;
+}
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+.text-center {
+  text-align: center;
+}
+.fs-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #ff851b;
+  color: #fff;
+}
+.fs-btn-full {
+  width: 100%;
+}
+button[disabled] {
+  color: #666;
+}
+.divider {
+  border-right: 1px solid #ddd;
+  position: relative;
+  height: 56px;
+  left: -34px;
+  top: -4px;
+  float: left;
 }
 /*
 * grid columns
@@ -136,14 +212,112 @@ a {
   }
 }
 
+/* The container */
+.container {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #ff851b;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 320px) and (max-width: 480px) {
-  [class*="col-"] {
+@media (min-width: 320px) and (max-width: 568px) {
+  .col-xs-1 {
+    width: 8.33%;
+  }
+  .col-xs-2 {
+    width: 16.66%;
+  }
+  .col-xs-3 {
+    width: 25%;
+  }
+  .col-xs-4 {
+    width: 33.33%;
+  }
+  .col-xs-5 {
+    width: 41.66%;
+  }
+  .col-xs-6 {
+    width: 50%;
+  }
+  .col-xs-7 {
+    width: 58.33%;
+  }
+  .col-xs-8 {
+    width: 66.66%;
+  }
+  .col-xs-9 {
+    width: 75%;
+  }
+  .col-xs-10 {
+    width: 83.33%;
+  }
+  .col-xs-11 {
+    width: 91.66%;
+  }
+  .col-xs-12 {
     width: 100%;
-    float: none;
+  }
+  .fs-hide-xs {
+    display: none;
   }
 }
