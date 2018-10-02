@@ -26,6 +26,9 @@
 .no-image {
   font-size: 80px;
 }
+h4 {
+  line-height: 2.3em;
+}
 @media (min-width: 320px) and (max-width: 568px) {
   .check-dates .month_day {
     font-size: 11px;

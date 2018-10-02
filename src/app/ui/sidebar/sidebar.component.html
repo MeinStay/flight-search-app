@@ -2,40 +2,52 @@
   <form #searchFlight="ngForm">
     <div class="fs-form-group">
       <label class="container m-r-5">
-          One Way
-          <input type="radio" name="tripType" value="oneway" [(ngModel)]="searchForm.tripType">
-          <span class="checkmark"></span>
+        One Way
+        <input type="radio" name="tripType" value="oneway" [(ngModel)]="searchForm.tripType">
+        <span class="checkmark"></span>
       </label>
       <label class="container">
         Round Trip
-          <input type="radio" name="tripType" value="roundtrip" [(ngModel)]="searchForm.tripType">
-          <span class="checkmark"></span>
+        <input type="radio" name="tripType" value="roundtrip" [(ngModel)]="searchForm.tripType">
+        <span class="checkmark"></span>
       </label>
     </div>
     <div class="fs-form-group">
       <input type="text" class="fs-form-control" id="originCity" required [(ngModel)]="searchForm.originCity" name="originCity"
-        #originCity="ngModel" placeholder="From City">
+        #originCity="ngModel" placeholder="From City" (ngModelChange)="isOriginCitySelected=true;">
       <div *ngIf="originCity.invalid && originCity.touched" class="alert">
         Please Enter Origin City
       </div>
+      <ul class="panel panel-bordered city-dropdown" *ngIf="isOriginCitySelected && searchForm.originCity">
+        <li *ngFor="let city of cities | filter : searchForm.originCity"
+        (click)="searchForm.originCity=city.city_name;isOriginCitySelected=false;">
+          {{city.city_name}}
+        </li>
+      </ul>
     </div>
     <div class="fs-form-group">
       <input type="text" class="fs-form-control" id="destinationCity" required [(ngModel)]="searchForm.destinationCity"
-        name="destinationCity" #destinationCity="ngModel" placeholder="To City">
+        name="destinationCity" #destinationCity="ngModel" placeholder="To City" (ngModelChange)="isDestinationCitySelected=true;">
       <div *ngIf="destinationCity.invalid && destinationCity.touched" class="alert">
         Please Enter Destination City
       </div>
+      <ul class="panel panel-bordered city-dropdown" *ngIf="isDestinationCitySelected && searchForm.destinationCity">
+        <li *ngFor="let city of cities | filter : searchForm.destinationCity"
+        (click)="searchForm.destinationCity=city.city_name;isDestinationCitySelected=false;">
+          <span>{{city.city_name}}</span>
+        </li>
+      </ul>
     </div>
     <div class="fs-form-group">
-      <input type="text" class="fs-form-control" bsDatepicker required placeholder="From Date" id="departureDate"
-        name="departureDate" [(ngModel)]="searchForm.departureDate" #departureDate="ngModel">
+      <input type="text" class="fs-form-control" bsDatepicker required placeholder="From Date" id="departureDate" name="departureDate"
+        [(ngModel)]="searchForm.departureDate" #departureDate="ngModel">
       <div *ngIf="departureDate.invalid && departureDate.touched" class="alert">
         Please Enter Departure Date
       </div>
     </div>
     <div class="fs-form-group" *ngIf="searchForm.tripType==='roundtrip'">
-      <input type="text" class="fs-form-control" bsDatepicker required placeholder="To Date" id="returnDate"
-        name="returnDate" [(ngModel)]="searchForm.returnDate" #returnDate="ngModel">
+      <input type="text" class="fs-form-control" bsDatepicker required placeholder="To Date" id="returnDate" name="returnDate"
+        [(ngModel)]="searchForm.returnDate" #returnDate="ngModel">
       <div *ngIf="returnDate.invalid && returnDate.touched" class="alert">
         Please Enter Return Date
       </div>

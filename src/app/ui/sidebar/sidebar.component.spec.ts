@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SidebarComponent } from './sidebar.component';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from '../../shared/pipes/filter.pipe';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -8,9 +10,10 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule],
+      declarations: [SidebarComponent, FilterPipe],
+      providers: [HttpClient, HttpHandler]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

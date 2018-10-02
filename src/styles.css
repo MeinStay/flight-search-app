@@ -18,9 +18,15 @@ button {
   font-family: "Noto Sans KR", sans-serif;
   font-size: 12px;
 }
+h4 {
+  font-weight: normal;
+}
 a {
   text-decoration: none;
   color: #4a4a4a;
+}
+ul {
+  list-style: none;
 }
 .fs-container {
   padding-right: 15px;
@@ -124,6 +130,8 @@ a {
 }
 button[disabled] {
   color: #666;
+  opacity: 0.9;
+  cursor: not-allowed;
 }
 .divider {
   border-right: 1px solid #ddd;

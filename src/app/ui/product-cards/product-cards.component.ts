@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GetFlightsService } from '../services/get-flights.service';
+import { IFlights } from '../data-interfaces/flights.interface';
 
 @Component({
   selector: 'app-product-cards',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-cards.component.css']
 })
 export class ProductCardsComponent implements OnInit {
-
-  constructor() { }
+  public flights: IFlights[];
+  constructor(private getFlightsService: GetFlightsService) { }
 
   ngOnInit() {
+    this.getFlightsService.getFlights().subscribe((response: IFlights[]) => {
+      this.flights = response;
+    });
   }
 
 }
