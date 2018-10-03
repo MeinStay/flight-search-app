@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CoreHttpService } from '../../core/core-http.service';
-import { ICities } from '../../core/data-interfaces/cities.interface';
 import { IFlights } from '../data-interfaces/flights.interface';
 
 @Injectable({

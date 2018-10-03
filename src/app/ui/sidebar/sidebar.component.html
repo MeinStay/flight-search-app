@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="fs-form-group">
-      <button type="button" class="fs-btn" [disabled]="searchFlight.invalid">Search</button>
+      <button type="button" class="fs-btn" [disabled]="searchFlight.invalid" (click)="submitSearchForm(searchForm);">Search</button>
     </div>
   </form>
   <div class="search-filter">

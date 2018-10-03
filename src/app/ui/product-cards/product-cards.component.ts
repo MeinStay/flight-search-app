@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { GetFlightsService } from '../services/get-flights.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { GetFlightsService } from '../services/flights.service';
 import { IFlights } from '../data-interfaces/flights.interface';
+import { ISearchForm } from '../data-interfaces/search-form-model.interface';
+import { NgRadio } from 'ng-radio';
 
 @Component({
   selector: 'app-product-cards',
@@ -9,11 +11,24 @@ import { IFlights } from '../data-interfaces/flights.interface';
 })
 export class ProductCardsComponent implements OnInit {
   public flights: IFlights[];
-  constructor(private getFlightsService: GetFlightsService) { }
+  @Input() public flightSearchFields: ISearchForm;
+  constructor(
+    private getFlightsService: GetFlightsService,
+    private ngRadio: NgRadio
+  ) { }
 
   ngOnInit() {
     this.getFlightsService.getFlights().subscribe((response: IFlights[]) => {
       this.flights = response;
+    });
+
+    this.ngRadio.on('searchFormData').subscribe((flightSearchFields: ISearchForm) => {
+      this.flights = this.flights.filter((item: IFlights) => {
+        return item.origin_city === flightSearchFields.originCity
+        && item.destination_city === flightSearchFields.destinationCity
+        && (item.from_date === flightSearchFields.departureDate
+        || item.to_date === flightSearchFields.returnDate);
+      });
     });
   }
 

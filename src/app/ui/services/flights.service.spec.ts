@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { GetFlightsService } from './get-flights.service';
+import { GetFlightsService } from './flights.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('GetFlightsService', () => {

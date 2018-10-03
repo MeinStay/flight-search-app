@@ -6,6 +6,7 @@ import { ProductCardsComponent } from './product-cards/product-cards.component';
 import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { NgRadio } from 'ng-radio';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     BsDatepickerModule.forRoot(),
     SharedModule
   ],
+  providers: [NgRadio],
   declarations: [HomeComponent, SidebarComponent, ProductCardsComponent],
   exports: [HomeComponent]
 })
