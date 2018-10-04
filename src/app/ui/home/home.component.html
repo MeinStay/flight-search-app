@@ -1,6 +1,6 @@
 <section class="fs-container">
   <div class="row">
-    <aside class="col-3 col-xs-12 fs-hide-xs">
+    <aside class="col-3 col-xs-12" [ngClass]="isSideBarOpen ? 'sidebar' : 'fs-hide-xs'">
       <app-sidebar></app-sidebar>
     </aside>
     <section class="col-9 col-xs-12">

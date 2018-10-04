@@ -141,6 +141,7 @@ button[disabled] {
   top: -4px;
   float: left;
 }
+
 /*
 * grid columns
 */
@@ -186,38 +187,6 @@ button[disabled] {
   padding-right: 15px;
   position: relative;
   min-height: 1px;
-}
-
-/*
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-
-/* @media (min-width: 768px) and (max-width: 1024px) {
-
-
-} */
-
-/*
-  ##Device = Tablets, Ipads (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
-
-/* @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-
-} */
-
-/*
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-
-@media (min-width: 481px) and (max-width: 767px) {
-  [class*="col-"] {
-    width: 100%;
-    float: none;
-  }
 }
 
 /* The container */
@@ -288,7 +257,10 @@ button[disabled] {
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 320px) and (max-width: 568px) {
+@media (min-width: 320px) and (max-width: 767px) {
+  .flight-data {
+    margin-bottom: 15px;
+  }
   .col-xs-1 {
     width: 8.33%;
   }

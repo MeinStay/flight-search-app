@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRadio } from 'ng-radio';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public isSidebarToggle: boolean = false;
+  constructor(
+    private ngRadio: NgRadio
+  ) { }
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  /**
+   * opens side bar in mobile view
+   */
+  public openSideBar(): void {
+    this.isSidebarToggle = !this.isSidebarToggle;
+    this.ngRadio.cast('openSideBar', this.isSidebarToggle);
   }
 
 }

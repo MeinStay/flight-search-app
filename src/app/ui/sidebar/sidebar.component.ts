@@ -45,9 +45,9 @@ export class SidebarComponent implements OnInit {
 
   public getFormattedDate(date: string): string {
     const dateString = new Date(date);
-    const month = dateString .getMonth() + 1;
-    const day = dateString .getDate();
-    const year = dateString .getFullYear();
+    const month = dateString.getMonth() + 1;
+    const day = dateString.getDate();
+    const year = dateString.getFullYear();
     return (month <= 9 ? '0' + month : month) + '/' + (day <= 9 ? '0' + day : day ) + '/' + year;
 }
 

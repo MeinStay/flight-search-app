@@ -11,7 +11,8 @@ import { NgRadio } from 'ng-radio';
 })
 export class ProductCardsComponent implements OnInit {
   public flights: IFlights[];
-  @Input() public flightSearchFields: ISearchForm;
+  public fromDate: string[] = [];
+  public toDate: string[] = [];
   constructor(
     private getFlightsService: GetFlightsService,
     private ngRadio: NgRadio
@@ -24,6 +25,8 @@ export class ProductCardsComponent implements OnInit {
 
     this.ngRadio.on('searchFormData').subscribe((flightSearchFields: ISearchForm) => {
       this.flights = this.getFlightBySearchFields(flightSearchFields);
+      this.fromDate = flightSearchFields.departureDate.split('/');
+      this.toDate = flightSearchFields.returnDate ? flightSearchFields.returnDate.split('/') : [];
     });
 
   }
@@ -32,8 +35,8 @@ export class ProductCardsComponent implements OnInit {
     return this.flights.filter((item: IFlights) => {
       return item.origin_city === flightSearchFields.originCity
       && item.destination_city === flightSearchFields.destinationCity
-      && (item.from_date === flightSearchFields.departureDate
-      || item.to_date === flightSearchFields.returnDate);
+      && item.from_date === flightSearchFields.departureDate
+      && item.to_date === flightSearchFields.returnDate;
     });
   }
 

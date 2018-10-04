@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRadio } from 'ng-radio';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  public isSideBarOpen: boolean;
+  constructor(
+    private ngRadio: NgRadio
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ngRadio.on('openSideBar').subscribe((data: boolean) => {
+      this.isSideBarOpen = data;
+    });
+  }
 
 }

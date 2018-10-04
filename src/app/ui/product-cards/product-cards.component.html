@@ -1,27 +1,25 @@
-<main class="products m-t-15">
-  <section class="row m-b-20">
+<main class="products">
+  <section class="row">
     <h3 class="col-4 col-xs-12 flight-route">Pune > Delhi > Pune</h3>
     <div class="col-8 col-xs-12">
-      <div class="col-4 col-xs-6">
+      <div class="col-4 col-xs-6" *ngIf="fromDate.length > 0">
         <p class="modify_captions">DEPARTURE</p>
         <p class="check-dates">
           <span class="fa fa-calendar-alt m-r-5 calendar-icon"></span>
-          <span class="date">01</span>
+          <span class="date">{{fromDate[1]}}</span>
           <span class="month_day">
-            <span>Oct 18</span>
-            <span class="display-block">Mon</span>
+            <span>{{fromDate[0]}} {{fromDate[2]}}</span>
           </span>
         </p>
       </div>
-      <div class="divider fs-hide-xs"></div>
-      <div class="col-4 col-xs-6">
+      <div class="divider fs-hide-xs" *ngIf="toDate.length > 0"></div>
+      <div class="col-4 col-xs-6" *ngIf="toDate.length > 0">
         <p class="modify_captions">Return</p>
         <p class="check-dates">
           <span class="fa fa-calendar-alt m-r-5 calendar-icon"></span>
-          <span class="date">01</span>
+          <span class="date">{{toDate[1]}}</span>
           <span class="month_day">
-            <span>Oct 18</span>
-            <span class="display-block">Mon</span>
+            <span>{{toDate[0]}} {{toDate[2]}}</span>
           </span>
         </p>
       </div>
@@ -30,19 +28,19 @@
   <section class="row">
     <div class="panel panel-bordered m-b-20" *ngFor="let flight of flights; let i = index;">
       <div class="row">
-        <div class="col-9 col-xs-12 m-b-15">
-          <h3 class="m-b-15"><i class="fa fa-rupee-sign m-r-5"></i>9500</h3>
+        <div class="col-9 col-xs-12 flight-data">
+          <h3 class="m-b-15"><i class="fa fa-rupee-sign m-r-5"></i>{{flight.fare}}</h3>
           <div class="col-6 col-xs-6">
-            <h3>AI - 202</h3>
-            <h4>PNQ > Del</h4>
-            <h4><i class="fa fa-clock m-r-5"></i>Depart : 10:30 AM</h4>
-            <h4><i class="fa fa-clock m-r-5"></i>Arrive : 12:30 PM</h4>
+            <h3>{{flight.flight_code}}</h3>
+            <h4>{{flight.origin_city}} > {{flight.destination_city}}</h4>
+            <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
+            <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
           </div>
           <div class="col-6 col-xs-6">
-            <h3>AI - 202</h3>
-            <h4>PNQ > Del</h4>
-            <h4><i class="fa fa-clock m-r-5"></i>Depart : 10:30 AM</h4>
-            <h4><i class="fa fa-clock m-r-5"></i>Arrive : 12:30 PM</h4>
+            <h3>{{flight.flight_code}}</h3>
+            <h4>{{flight.destination_city}} > {{flight.origin_city}}</h4>
+            <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
+            <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
           </div>
         </div>
         <div class="col-3 col-xs-12">
