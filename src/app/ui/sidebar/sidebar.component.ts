@@ -36,7 +36,19 @@ export class SidebarComponent implements OnInit {
   }
 
   public submitSearchForm(searchForm: ISearchForm): void {
+    searchForm.departureDate = this.getFormattedDate(searchForm.departureDate);
+    if (searchForm.returnDate !== '') {
+      searchForm.returnDate = this.getFormattedDate(searchForm.returnDate);
+    }
     this.ngRadio.cast('searchFormData', searchForm);
   }
+
+  public getFormattedDate(date: string): string {
+    const dateString = new Date(date);
+    const month = dateString .getMonth() + 1;
+    const day = dateString .getDate();
+    const year = dateString .getFullYear();
+    return (month <= 9 ? '0' + month : month) + '/' + (day <= 9 ? '0' + day : day ) + '/' + year;
+}
 
 }

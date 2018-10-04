@@ -23,12 +23,17 @@ export class ProductCardsComponent implements OnInit {
     });
 
     this.ngRadio.on('searchFormData').subscribe((flightSearchFields: ISearchForm) => {
-      this.flights = this.flights.filter((item: IFlights) => {
-        return item.origin_city === flightSearchFields.originCity
-        && item.destination_city === flightSearchFields.destinationCity
-        && (item.from_date === flightSearchFields.departureDate
-        || item.to_date === flightSearchFields.returnDate);
-      });
+      this.flights = this.getFlightBySearchFields(flightSearchFields);
+    });
+
+  }
+
+  public getFlightBySearchFields(flightSearchFields: ISearchForm): IFlights[] {
+    return this.flights.filter((item: IFlights) => {
+      return item.origin_city === flightSearchFields.originCity
+      && item.destination_city === flightSearchFields.destinationCity
+      && (item.from_date === flightSearchFields.departureDate
+      || item.to_date === flightSearchFields.returnDate);
     });
   }
 
