@@ -92,6 +92,9 @@ ul {
 .m-t-20 {
   margin-top: 20px;
 }
+.m-t-40 {
+  margin-top: 40px;
+}
 .m-b-10 {
   margin-bottom: 10px;
 }
@@ -100,6 +103,9 @@ ul {
 }
 .m-b-20 {
   margin-bottom: 20px;
+}
+.text-light {
+  color: #aaa;
 }
 .border-bottom {
   border-bottom: 1px solid #ddd;
@@ -111,7 +117,7 @@ ul {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -299,5 +305,8 @@ button[disabled] {
   }
   .fs-hide-xs {
     display: none;
+  }
+  .p-l-0 {
+    padding-left:0;
   }
 }

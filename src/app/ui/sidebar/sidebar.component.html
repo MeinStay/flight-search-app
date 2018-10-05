@@ -65,5 +65,8 @@
   </form>
   <div class="search-filter">
     <p>Refine Search Results</p>
+    <div class="custom-slider m-t-20">
+      <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChangeEnd)="onUserChangeEnd($event)"></ng5-slider>
+    </div>
   </div>
 </div>
