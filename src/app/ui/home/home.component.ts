@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
     this.ngRadio.on('openSideBar').subscribe((data: boolean) => {
       this.isSideBarOpen = data;
     });
+    this.ngRadio.on('closeSideBar').subscribe((data: boolean) => {
+      this.isSideBarOpen = data;
+    });
   }
 
 }

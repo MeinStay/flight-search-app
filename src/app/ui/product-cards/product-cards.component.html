@@ -1,25 +1,25 @@
 <main class="products">
   <section class="row">
-    <h3 class="col-4 col-xs-12 flight-route p-l-0">Pune > Delhi > Pune</h3>
+    <h3 class="col-4 col-xs-12 flight-route p-l-0">{{route}}</h3>
     <div class="col-8 col-xs-12 p-l-0">
-      <div class="col-4 col-xs-6 p-l-0 m-b-20" *ngIf="fromDate.length > 0">
+      <div class="col-4 col-xs-6 p-l-0 m-b-20" *ngIf="fromDate">
         <p class="modify_captions">DEPARTURE</p>
         <p class="check-dates">
           <span class="fa fa-calendar-alt m-r-5 calendar-icon"></span>
-          <span class="date">{{fromDate[1]}}</span>
+          <span class="date">{{fromDate.getDate()}}</span>
           <span class="month_day">
-            <span>{{fromDate[0]}} {{fromDate[2]}}</span>
+            <span>{{fromDate.getMonth() + 1}} {{fromDate.getFullYear()}}</span>
           </span>
         </p>
       </div>
-      <div class="divider fs-hide-xs" *ngIf="toDate.length > 0"></div>
-      <div class="col-4 col-xs-6 m-b-20" *ngIf="toDate.length > 0">
+      <div class="divider fs-hide-xs" *ngIf="toDate"></div>
+      <div class="col-4 col-xs-6 m-b-20" *ngIf="toDate">
         <p class="modify_captions">Return</p>
         <p class="check-dates">
           <span class="fa fa-calendar-alt m-r-5 calendar-icon"></span>
-          <span class="date">{{toDate[1]}}</span>
+          <span class="date">{{toDate.getDate()}}</span>
           <span class="month_day">
-            <span>{{toDate[0]}} {{toDate[2]}}</span>
+            <span>{{toDate.getMonth() + 1}} {{toDate.getFullYear()}}</span>
           </span>
         </p>
       </div>
@@ -27,33 +27,55 @@
   </section>
   <section class="row">
     <div class="panel text-center" *ngIf="displayFlights && displayFlights.length === 0">
-      <h2 class="m-t-40 text-light"><i class="fas fa-exclamation-triangle m-r-5"></i>Sorry no flights for this search criteria. Please try again.</h2>
+      <h2 class="m-t-40 text-light"><i class="fas fa-exclamation-triangle m-r-5"></i>Sorry no flights for this search
+        criteria. Please try again.</h2>
     </div>
-    <div class="panel panel-bordered m-b-20" *ngFor="let flight of displayFlights; let i = index;">
-      <div class="row">
-        <div class="col-9 col-xs-12 flight-data">
-          <h3 class="m-b-15"><i class="fa fa-rupee-sign m-r-5"></i>{{flight.fare}}</h3>
+    <div *ngIf="!isReturnDate">
+      <div class="panel panel-bordered m-b-20" *ngFor="let flight of displayFlights; let i = index;">
+        <div class="row">
+          <div class="col-9 col-xs-12 flight-data">
+            <h3 class="m-b-15"><i class="fa fa-rupee-sign m-r-5"></i>{{flight.fare}}</h3>
+            <div class="row">
+              <div class="col-6 col-xs-12 m-b-15">
+                <h3>{{flight.flight_code}}</h3>
+                <h4>{{flight.origin_city}} > {{flight.destination_city}}</h4>
+                <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
+                <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-xs-12">
+            <div class="panel panel-bordered m-b-10 text-center">
+              <div class="fa fa-file-image no-image"></div>
+            </div>
+            <button type="button" class="fs-btn fs-btn-full">Book This One</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isReturnDate">
+      <div class="col-4 col-xs-12" *ngFor="let flight of displayFlights; let i = index;">
+        <div class="panel panel-bordered m-b-20">
           <div class="row">
-            <div class="col-6 col-xs-12 m-b-15">
-              <h3>{{flight.flight_code}}</h3>
-              <h4>{{flight.origin_city}} > {{flight.destination_city}}</h4>
-              <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
-              <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
-            </div>
-            <div class="col-6 col-xs-12">
-              <h3>{{flight.flight_code}}</h3>
-              <h4>{{flight.destination_city}} > {{flight.origin_city}}</h4>
-              <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
-              <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
+            <div class="col-xs-12 flight-data">
+              <h3 class="m-b-15"><i class="fa fa-rupee-sign m-r-5"></i>{{flight.fare}}</h3>
+              <div class="row">
+                <div class="col-xs-12 m-b-15">
+                  <h3>{{flight.flight_code}}</h3>
+                  <h4>{{flight.origin_city}} > {{flight.destination_city}}</h4>
+                  <h4><i class="fa fa-clock m-r-5"></i>Depart : {{flight.departure_time}}</h4>
+                  <h4><i class="fa fa-clock m-r-5"></i>Arrive : {{flight.arrival_time}}</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-3 col-xs-12">
-          <div class="panel panel-bordered m-b-10 text-center">
-            <div class="fa fa-file-image no-image"></div>
-          </div>
-          <button type="button" class="fs-btn fs-btn-full">Book This One</button>
+      </div>
+      <div class="col-4 col-xs-12">
+        <div class="panel panel-bordered m-b-10 text-center">
+          <div class="fa fa-file-image no-image"></div>
         </div>
+        <button type="button" class="fs-btn fs-btn-full">Book This One</button>
       </div>
     </div>
   </section>

@@ -40,7 +40,7 @@
     </div>
     <div class="fs-form-group">
       <input type="text" class="fs-form-control" bsDatepicker required placeholder="From Date" id="departureDate" name="departureDate"
-        [(ngModel)]="searchForm.departureDate" #departureDate="ngModel">
+        [(ngModel)]="searchForm.departureDate" #departureDate="ngModel" [minDate]="minDate">
       <div *ngIf="departureDate.invalid && departureDate.touched" class="alert">
         Please Enter Departure Date
       </div>
@@ -60,13 +60,13 @@
       </div>
     </div>
     <div class="fs-form-group">
-      <button type="button" class="fs-btn" [disabled]="searchFlight.invalid" (click)="submitSearchForm(searchForm);">Search</button>
+      <button type="button" class="fs-btn" [disabled]="searchFlight.invalid" (click)="submitSearchForm();">Search</button>
     </div>
   </form>
   <div class="search-filter">
     <p>Refine Search Results</p>
     <div class="custom-slider m-t-20">
-      <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChangeEnd)="onUserChangeEnd($event)"></ng5-slider>
+      <ng5-slider [(value)]="searchForm.minFare" [(highValue)]="searchForm.maxFare" [options]="options" (userChangeEnd)="onUserChangeEnd($event)"></ng5-slider>
     </div>
   </div>
 </div>

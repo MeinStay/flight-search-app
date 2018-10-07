@@ -1,3 +1,4 @@
+
 /**
  * Interface for search form
  */
@@ -5,7 +6,9 @@ export interface ISearchForm {
   tripType: string;
   originCity: string;
   destinationCity: string;
-  departureDate: string;
-  returnDate: string;
+  departureDate: Date;
+  returnDate: Date;
   passengers: string;
+  minFare: number;
+  maxFare: number;
 }

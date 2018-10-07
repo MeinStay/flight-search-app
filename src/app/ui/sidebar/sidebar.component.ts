@@ -16,16 +16,13 @@ export class SidebarComponent implements OnInit {
   public cities: ICities[];
   public isOriginCitySelected: boolean = false;
   public isDestinationCitySelected: boolean = false;
-  public minValue: number = 1000;
-  public maxValue: number = 10000;
+  public minDate: Date;
   public options: Options = {
     floor: 0,
     ceil: 10000,
     step: 1000,
     showTicks: true
   };
-  @Output()
-  public closeSideBar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private getCitiesService: GetCitiesService,
@@ -36,6 +33,7 @@ export class SidebarComponent implements OnInit {
    * function to initialize component
    */
   ngOnInit() {
+    this.minDate = new Date();
     // Initialize the form
     this.searchForm = new SearchForm();
     // Get the cities in cities text boxes
@@ -44,30 +42,35 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  public submitSearchForm(searchForm: ISearchForm): void {
-    this.closeSideBar.emit(false);
-    searchForm.departureDate = this.getFormattedDate(searchForm.departureDate);
-    if (searchForm.returnDate !== '') {
-      searchForm.returnDate = this.getFormattedDate(searchForm.returnDate);
+  /**
+   * function to submit all search form data
+   * @param searchForm
+   */
+  public submitSearchForm(): void {
+    // make return date null if the user switches option as oneway
+    if (this.searchForm.tripType === 'oneway') {
+      this.searchForm.returnDate = null;
     }
-    this.ngRadio.cast('searchFormData', searchForm);
+    this.ngRadio.cast('closeSideBar', false);
+    this.ngRadio.cast('searchFormData', this.searchForm);
   }
 
+  /**
+   * function to format date in mm-dd-yyyy format
+   * @param date
+   */
   public getFormattedDate(date: string): string {
     const dateString = new Date(date);
-    const month = dateString.getMonth() + 1;
-    const day = dateString.getDate();
-    const year = dateString.getFullYear();
-    return (
-      (month <= 9 ? '0' + month : month) +
-      '/' +
-      (day <= 9 ? '0' + day : day) +
-      '/' +
-      year
-    );
+    return dateString.getDay().toString();
   }
 
+  /**
+   * function to send slider values
+   * @param changeContext
+   */
   public onUserChangeEnd(changeContext: ChangeContext): void {
-    this.ngRadio.cast('sliderValues', changeContext);
+    this.searchForm.minFare = changeContext.value;
+    this.searchForm.maxFare = changeContext.highValue;
+    this.submitSearchForm();
   }
 }

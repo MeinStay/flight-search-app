@@ -12,7 +12,11 @@ export class HeaderComponent implements OnInit {
     private ngRadio: NgRadio
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ngRadio.on('closeSideBar').subscribe((data: boolean) => {
+      this.isSidebarToggle = data;
+    });
+  }
 
   /**
    * opens side bar in mobile view

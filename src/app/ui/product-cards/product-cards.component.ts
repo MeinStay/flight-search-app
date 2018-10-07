@@ -15,12 +15,11 @@ export class ProductCardsComponent implements OnInit {
   public flights: IFlights[];
   // variable to display the flights after operations
   public displayFlights: IFlights[];
-  public fromDate: string[] = [];
-  public toDate: string[] = [];
-  constructor(
-    private getFlightsService: GetFlightsService,
-    private ngRadio: NgRadio
-  ) { }
+  public fromDate: Date;
+  public toDate: Date;
+  public route: string;
+  public isReturnDate: boolean = false;
+  constructor(private getFlightsService: GetFlightsService, private ngRadio: NgRadio) {}
 
   ngOnInit() {
     this.getFlightsService.getFlights().subscribe((response: IFlights[]) => {
@@ -30,17 +29,26 @@ export class ProductCardsComponent implements OnInit {
     });
 
     this.ngRadio.on('searchFormData').subscribe((flightSearchFields: ISearchForm) => {
+      if (flightSearchFields.returnDate !== null) {
+        this.isReturnDate = true;
+      } else {
+        this.isReturnDate = false;
+      }
+      this.route =
+        flightSearchFields.originCity +
+        ' > ' +
+        flightSearchFields.destinationCity +
+        (this.isReturnDate ? ' > ' + flightSearchFields.originCity : '');
       // filtered flights by search form are assigned here
       this.displayFlights = this.getFlightBySearchFields(flightSearchFields);
-      this.fromDate = flightSearchFields.departureDate.split('/');
-      this.toDate = flightSearchFields.returnDate ? flightSearchFields.returnDate.split('/') : [];
+      this.fromDate = flightSearchFields.departureDate;
+      this.toDate = flightSearchFields.returnDate;
     });
 
     this.ngRadio.on('sliderValues').subscribe((price: ChangeContext) => {
       // filtered flights by price are assigned here
       this.displayFlights = this.getFlightsByPrice(price);
     });
-
   }
 
   /**
@@ -48,12 +56,36 @@ export class ProductCardsComponent implements OnInit {
    * @param flightSearchFields
    */
   public getFlightBySearchFields(flightSearchFields: ISearchForm): IFlights[] {
-    return this.flights.filter((item: IFlights) => {
-      return item.origin_city === flightSearchFields.originCity
-      && item.destination_city === flightSearchFields.destinationCity
-      && item.from_date === flightSearchFields.departureDate
-      && item.to_date === flightSearchFields.returnDate;
-    });
+    if (this.isReturnDate) {
+      return this.flights.filter((item: IFlights) => {
+        return this.getReturnFlights(item, flightSearchFields);
+      });
+    } else {
+      return this.flights.filter((item: IFlights) => {
+        return this.getDepartFlights(item, flightSearchFields);
+      });
+    }
+  }
+
+  public getReturnFlights(flight: IFlights, searchFields: ISearchForm): Boolean {
+    return (
+      ((flight.origin_city === searchFields.originCity && flight.destination_city === searchFields.destinationCity) ||
+        (flight.origin_city === searchFields.destinationCity && flight.destination_city === searchFields.originCity)) &&
+      flight.days.indexOf(searchFields.departureDate.getDay().toString()) !== -1 &&
+      flight.days.indexOf(searchFields.returnDate.getDay().toString()) !== -1 &&
+      Number(flight.fare) >= searchFields.minFare &&
+      Number(flight.fare) <= searchFields.maxFare
+    );
+  }
+
+  public getDepartFlights(flight: IFlights, searchFields: ISearchForm): Boolean {
+    return (
+      flight.origin_city === searchFields.originCity &&
+      flight.destination_city === searchFields.destinationCity &&
+      flight.days.indexOf(searchFields.departureDate.getDay().toString()) !== -1 &&
+      Number(flight.fare) >= searchFields.minFare &&
+      Number(flight.fare) <= searchFields.maxFare
+    );
   }
 
   /**
@@ -65,5 +97,4 @@ export class ProductCardsComponent implements OnInit {
       return Number(item.fare) >= price.value && Number(item.fare) <= price.highValue;
     });
   }
-
 }
