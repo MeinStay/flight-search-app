@@ -1,91 +1,81 @@
 [{
-  "flight_code": "AI-202",
+  "flight_code": "AI-200",
   "origin_city": "New Delhi",
   "destination_city": "Pune",
-  "fare" : "9100",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": ""
+  "fare" : "6000",
+  "departure_time": "00:30 AM",
+  "arrival_time": "02:30 AM",
+  "days": ["0","1","2","3","4","5","6"]
 },{
   "flight_code": "AI-202",
   "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9200",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": ""
+  "destination_city": "Mumbai",
+  "fare" : "5000",
+  "departure_time": "08:30 AM",
+  "arrival_time": "12:00 PM",
+  "days": ["0","2","3","4","5","6"]
+},{
+  "flight_code": "GO-AIR-400",
+  "origin_city": "New Delhi",
+  "destination_city": "Nagpur",
+  "fare" : "4000",
+  "departure_time": "15:30 PM",
+  "arrival_time": "17:30 PM",
+  "days": ["0","2","3","4","5","6"]
+},{
+  "flight_code": "AI-204",
+  "origin_city": "New Delhi",
+  "destination_city": "Chennai",
+  "fare" : "8500",
+  "departure_time": "00:30 AM",
+  "arrival_time": "03:30 AM",
+  "days": ["0","1","2","3","4","5","6"]
+},{
+  "flight_code": "AI-203",
+  "origin_city": "New Delhi",
+  "destination_city": "Kolkata",
+  "fare" : "6500",
+  "departure_time": "06:30 AM",
+  "arrival_time": "10:30 PM",
+  "days": ["0","2","3","4","5","6"]
 },{
   "flight_code": "AI-202",
-  "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9300",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": ""
+  "origin_city": "Mumbai",
+  "destination_city": "New Delhi",
+  "fare" : "5500",
+  "departure_time": "18:30 PM",
+  "arrival_time": "20:30 PM",
+  "days": ["0","2","3","4","6"]
 },{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
+  "flight_code": "AI-206",
+  "origin_city": "Pune",
+  "destination_city": "Nagpur",
+  "fare" : "4500",
+  "departure_time": "00:30 PM",
+  "arrival_time": "14:30 PM",
+  "days": ["0","2","3","4","5","6"]
 },{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
+  "flight_code": "INDIGO-024",
+  "origin_city": "Nagpur",
   "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
+  "fare" : "5500",
+  "departure_time": "6:30 AM",
+  "arrival_time": "9:30 AM",
+  "days": ["0","2","3","5","6"]
 },{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
+  "flight_code": "AI-200",
+  "origin_city": "Bangalore",
   "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
+  "fare" : "6500",
+  "departure_time": "8:05 AM",
+  "arrival_time": "12:15 PM",
+  "days": ["0","2","4","5","6"]
 },{
-  "flight_code": "AI-202",
+  "flight_code": "GO-AIR-028",
   "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
-},{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
-},{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
-},{
-  "flight_code": "AI-202",
-  "origin_city": "New Delhi",
-  "destination_city": "Pune",
-  "fare" : "9500",
-  "departure_time": "10:30 AM",
-  "arrival_time": "12:30 PM",
-  "from_date": "10/01/2018",
-  "to_date": "10/01/2018"
+  "destination_city": "Bangalore",
+  "fare" : "6500",
+  "departure_time": "9:05 AM",
+  "arrival_time": "13:30 PM",
+  "days": ["0","2","3","4"]
 }]
